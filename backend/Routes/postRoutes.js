@@ -1,9 +1,6 @@
 const express = require('express');
 const postRouter = express.Router();
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const validator = require('../Middlewares/validator');
 const PostModel = require('../Models/postModel');
 const auth = require('../Middlewares/authMiddleware');
 
@@ -26,5 +23,40 @@ postRouter.post('/createPost', auth, async(req, res) => {
     }
 })
 
+postRouter.patch('/editPost/:id', auth, async(req, res) => {
+    const {id} = req.params;
+    const author = req.body.author;
+    const user = await PostModel.findOne({_id : id});
+
+    try {
+        if(author === user.author.toString()){
+            const post = await PostModel.findByIdAndUpdate({_id : id}, req.body, {new : true})
+            res.status(200).send({ 'msg': 'Post updated', post });
+        }
+        else{
+            res.status(400).send({ 'msg': 'You are not authorized to update' });
+        }
+    } catch (error) {
+        res.status(400).send({msg : error.message});
+    }
+})
+
+
+postRouter.delete('/deletePost/:id', auth, async(req, res) => {
+    const {id} = req.params;
+    const author = req.body.author;
+    const user = await PostModel.findOne({_id : id});
+    try {
+        if(author === user.author.toString()){
+            const post = await PostModel.findByIdAndDelete({_id : id});
+            res.status(200).send({ 'msg': 'Post deleted' });
+        }
+        else{
+            res.status(400).send({ 'msg': 'You are not authorized to delete' });
+        }
+    } catch (error) {
+        res.status(400).send({msg : error.message});
+    }
+})
 
 module.exports = postRouter;
