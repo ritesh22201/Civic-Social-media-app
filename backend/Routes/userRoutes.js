@@ -33,7 +33,7 @@ userRouter.post('/login', async(req, res) => {
                 res.status(400).send({msg : 'Wrong Password!'})
             }
             else{
-                const token = jwt.sign({userId : user._id, userName : user.name}, process.env.secretKey, {expiresIn : '1d'});
+                const token = jwt.sign({author : user._id, userName : user.name}, process.env.secretKey, {expiresIn : '1d'});
                 res.status(200).send({msg : 'User loggedIn successfully', token, userName : user.name});
             }
         }
