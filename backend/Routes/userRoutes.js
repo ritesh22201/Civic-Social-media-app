@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const validator = require('../Middlewares/validator');
 const UserModel = require('../Models/userModel');
+const LogoutModel = require('../Models/logoutModel');
 
 
 userRouter.post('/register', validator, async(req, res) => {
@@ -41,6 +42,19 @@ userRouter.post('/login', async(req, res) => {
     }
 })
 
-
+userRouter.get('/logout', async(req, res) => {
+    const token = req.headers.authorization?.split(' ')[1];
+    try {
+        if(!token){
+            res.status(400).send({msg : 'Login first!'});
+        }
+        else{
+            const logoutUser = await LogoutModel.create({token});
+            res.status(200).send({msg : 'User logged out successfully'});
+        }
+    } catch (error) {
+        res.status(400).send({msg : error.message});
+    }
+})
 
 module.exports = userRouter;
