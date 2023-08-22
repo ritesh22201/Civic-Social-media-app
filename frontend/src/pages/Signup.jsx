@@ -31,7 +31,7 @@ const Signup = () => {
                 title: 'Failed',
                 description: 'All fields are required!',
                 position: 'top',
-                status: 'error',
+                status: 'warning',
                 isClosable: true,
                 duration: 4000
             })
@@ -60,7 +60,7 @@ const Signup = () => {
             })
 
             setTimeout(() => {
-                navigate('/home');
+                navigate('/login');
                 window.location.reload();
             }, 4000)
         }
@@ -74,7 +74,7 @@ const Signup = () => {
                 duration: 4000
             })
         }
-    }, [registerMsg])
+    }, [registerMsg, registerErr])
 
     return (
         <Box>
@@ -94,7 +94,7 @@ const Signup = () => {
                     </Box>
                     <Button type='submit' mt={'7px'} _hover={'none'} w={'100%'} bg={'rgb(75, 180, 248)'} color={'white'} borderRadius={'12px'}>Sign up</Button>
                 </form>
-                <Box mt={'10px'}>
+                <Box mt={'10px'} fontSize={'13px'} color={'gray.500'}>
                     Already a member? <Link style={{color : 'rgb(41, 164, 245)', marginLeft : '20px', textDecoration : 'underline'}} to={'/login'}>Login</Link>
                 </Box>
             </Box>
