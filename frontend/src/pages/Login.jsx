@@ -56,7 +56,7 @@ const Signup = () => {
             })
 
             setTimeout(() => {
-                navigate('/home');
+                navigate('/');
                 window.location.reload();
             }, 4000)
         }
@@ -90,7 +90,7 @@ const Signup = () => {
                     <Button type='submit' mt={'7px'} _hover={'none'} w={'100%'} bg={'rgb(75, 180, 248)'} color={'white'} borderRadius={'12px'}>Login</Button>
                 </form>
                 <Box mt={'10px'} fontSize={'13px'} color={'gray.500'}>
-                    New Here? <Link style={{ color: 'rgb(41, 164, 245)', marginLeft: '20px', textDecoration: 'underline' }} to={'/'}>Signup</Link>
+                    New Here? <Link style={{ color: 'rgb(41, 164, 245)', marginLeft: '20px', textDecoration: 'underline' }} to={'/signup'}>Signup</Link>
                 </Box>
             </Box>
                 :

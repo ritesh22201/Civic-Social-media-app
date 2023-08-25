@@ -5,7 +5,7 @@ const data = JSON.parse(localStorage.getItem('token')) || '';
 
 export const signup = (formData) => (dispatch) => {
     dispatch({type : SIGNUP_REQ});
-    axios.post('https://civic-social.onrender.com/users/register', formData)
+    axios.post('https://dizzy-gold-bell-bottoms.cyclic.cloud/users/register', formData)
     .then(res => {
         // console.log(res)
         dispatch({type : SIGNUP_SUCCESS, payload : res.data.msg});
@@ -18,7 +18,7 @@ export const signup = (formData) => (dispatch) => {
 
 export const login = (formData) => (dispatch) => {
     dispatch({type : SIGNUP_REQ});
-    axios.post('https://civic-social.onrender.com/users/login', formData)
+    axios.post('https://dizzy-gold-bell-bottoms.cyclic.cloud/users/login', formData)
     .then(res => {
         if(res.data.msg){
             localStorage.setItem('token', JSON.stringify(res.data))
@@ -39,7 +39,7 @@ export const getUsers = () => (dispatch) => {
     }
 
     dispatch({type : SIGNUP_REQ});
-    axios.get('https://civic-social.onrender.com/users/',config)
+    axios.get('https://dizzy-gold-bell-bottoms.cyclic.cloud/users/',config)
     .then(res => {
         dispatch({type : GET_USERS_SUCCESS, payload : res.data})
     })

@@ -45,6 +45,8 @@ const NavLink = (props: Props) => {
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const data = JSON.parse(localStorage.getItem('token')) || '';
+
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
@@ -79,7 +81,7 @@ export default function Navbar() {
                   </Center>
                   <br />
                   <Center>
-                    <p>Username</p>
+                    <p style={{fontWeight : 'bold'}}>{data.userName}</p>
                   </Center>
                   <br />
                   <MenuDivider />

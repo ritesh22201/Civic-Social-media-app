@@ -1,4 +1,4 @@
-import { GET_POST, GET_POST_FAILURE, GET_POST_SUCCESS } from "./actionTypes";
+import { GET_LIKE, GET_POST, GET_POST_FAILURE, GET_POST_SUCCESS } from "./actionTypes";
 
 const initialState = {
     isLoading : false,
@@ -33,6 +33,14 @@ export const reducer = (state = initialState, {type, payload}) => {
                 isLoading : false,
                 isError : true,
                 errorMsg : payload
+            }
+        }
+
+        case GET_LIKE : {
+            return {
+                ...state,
+                isLoading : false,
+                isError : false,
             }
         }
 

@@ -6,13 +6,14 @@ import Home from '../pages/Home';
 import PrivateRoute from './PrivateRoute';
 
 const AllRoutes = () => {
+  const data = JSON.parse(localStorage.getItem('token')) || '';
   return (
     <Routes>
-        <Route path='/' element={<Signup/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/home' element={<PrivateRoute>
-            <Home/>
-        </PrivateRoute>}/>
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/' element={<PrivateRoute>
+          <Home />
+        </PrivateRoute>} />
+      <Route path='/login' element={<Login />} />
     </Routes>
   )
 }
